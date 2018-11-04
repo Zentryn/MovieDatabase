@@ -13,4 +13,4 @@ priviledges
 * Adding movies as favorites
 * Requesting a movie to be added as a normal user
 
-[_Click here to see the live application_](https://movie-database-hy-2018.herokuapp.com)
+[Click here to see the live application](https://movie-database-hy-2018.herokuapp.com)
