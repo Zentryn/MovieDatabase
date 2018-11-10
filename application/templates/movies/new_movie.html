@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_item.css') }}">
+
+    <script src="{{ url_for('static', filename='scripts/movie_item_resize.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/movie_form.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="title-container">
+        <h2 id="page-title">Add New Movie</h2>
+    </div>
+
+    <form method="POST" action="{{ url_for('add_movie') }}">
+        <input id="input-title" type="text" name="title" placeholder="Movie title" required />
+        <input id="input-poster" type="text" name="poster_url" placeholder="Movie poster url" required />
+        <input id="submit-btn" type="submit" value="Add Movie" />
+    </form>
+
+    <p id="preview-text">
+        Preview:
+    </p>
+
+    <div id="movie-preview-item" class="movie-item">
+        <div id="movie-preview-item-cover" class="movie-item-cover"></div>
+        <div id="movie-preview-item-title" class="movie-item-title"></div>
+    </div>
+{% endblock %}

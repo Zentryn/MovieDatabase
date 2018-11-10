@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_item.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie.css') }}">
+
+    <script src="{{ url_for('static', filename='scripts/movie_item_resize.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/movie_form.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="title-container">
+        <h2 id="page-title">Add New Movie</h2>
+    </div>
+    
+    <form method="POST" action="{{ url_for('update_movie') }}">
+        <input type="text" name="id" value="{{ movie.id }}" style="display: none" />
+        <input id="input-title" type="text" name="title" placeholder="Movie title" value="{{ movie.title }}" required />
+        <input id="input-poster" type="text" name="poster_url" placeholder="Movie poster url" value="{{ movie.poster_url }}" required />
+        <br>
+        <input id="submit-btn" type="submit" value="Update Movie" />
+    </form>
+
+    <form method="POST" action="{{ url_for('delete_movie') }}">
+        <input type="text" name="id" value="{{ movie.id }}" style="display: none" />
+        <input id="delete-movie-btn" type="submit" value="Delete Movie" />
+    </form>
+
+    <p id="preview-text">
+        Preview:
+    </p>
+
+    <div id="movie-preview-item" class="movie-item">
+        <div id="movie-preview-item-cover" class="movie-item-cover" style="background-image: url('{{ movie.poster_url }}')"></div>
+        <div id="movie-preview-item-title" class="movie-item-title">{{ movie.title }}</div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MovieApp</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/globals.css') }}">
+
+    {% block head %}
+
+    {% endblock %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/layout.css') }}">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-content">
+            <a class="navbar-block left" href="/movies">
+                Movie Database
+            </a>
+
+            <a class="navbar-block right" href="/movies/new">
+                Add New Movie
+            </a>
+        </div>
+    </div>
+
+    <div id="site-container">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>
