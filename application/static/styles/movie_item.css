@@ -1,0 +1,25 @@
+.movie-item {
+    padding-left: 0 !important;
+    padding-right: 30px !important;
+    margin-bottom: 70px;
+}
+
+.movie-item-cover {
+    width: 100%;
+    height: 200px;
+    margin: auto;
+
+    background-size: cover;
+
+    -webkit-box-shadow: 1px 0px 12px 0px rgba(0, 9, 0, 0.75);
+    -moz-box-shadow:    1px 0px 12px 0px rgba(0, 9, 0, 0.75);
+    box-shadow:         1px 0px 12px 0px rgba(0, 9, 0, 0.75);
+
+    cursor: pointer;
+}
+
+.movie-item-title {
+    font-size: 0.95em;
+    padding-top: 10px;
+    color: white;
+}

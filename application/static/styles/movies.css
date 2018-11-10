@@ -1,0 +1,9 @@
+#movie-items-container {
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}

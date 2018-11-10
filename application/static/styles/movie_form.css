@@ -1,0 +1,40 @@
+input[type="text"] {
+    border: 0;
+    box-shadow: none;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    border-bottom: 2px solid white;
+    outline: none;
+    width: 300px;
+}
+
+input[type="submit"] {
+    border: 1px solid white;
+    padding: 10px;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+}
+
+#submit-btn:hover {
+    color: black;
+    background-color: white;
+}
+
+input {
+    margin-right: 50px;
+    margin-bottom: 30px;
+}
+
+#preview-text {
+    color: white;
+    margin-bottom: 10px;
+}
+
+#movie-preview-item {
+    width: 200px;
+}
