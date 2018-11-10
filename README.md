@@ -14,5 +14,7 @@ priviledges
 * Requesting a movie to be added as a normal user
 
 [Click here to see the live application](https://movie-database-hy-2018.herokuapp.com)
+
 [Usecases](https://github.com/Zentryn/MovieDatabase/documentation/Usecases.md)
+
 [Database Overview](https://github.com/Zentryn/MovieDatabase/documentation/Database.png)
