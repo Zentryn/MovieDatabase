@@ -26,15 +26,31 @@ input[type="submit"] {
 }
 
 input {
-    margin-right: 50px;
     margin-bottom: 30px;
+    margin-right: 50px;
 }
 
 #preview-text {
     color: white;
     margin-bottom: 10px;
+    margin-top: 30px;
 }
 
 #movie-preview-item {
     width: 200px;
+}
+
+#error-list {
+    margin: 5px 5px 5px 0px;
+}
+
+#error-list-title {
+    color: white;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.error-list-item {
+    color: lightcoral;
+    list-style-type: none;
 }
