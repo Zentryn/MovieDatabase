@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/globals.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/auth.css') }}" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="login">
+                <div class="login-title">
+                    Register
+                </div>
+                <form class="login-form" method="POST" action="{{ url_for('auth_register') }}">
+                    <div class="login-row">
+                        <svg class="login-icon name svg-icon" viewBox="0 0 20 20">
+                            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+                        </svg>
+
+                        {{ form.username(class_="login-input name", autofocus=true, required=true) }}
+                    </div>
+                    <div class="login-row">
+                        <svg class="login-icon pass svg-icon" viewBox="0 0 20 20">
+                            <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+                        </svg>
+
+                        {{ form.password(class_="login-input pass", required=true) }}
+                    </div>
+
+                    <div id="already-a-member">Already a member? <a href="{{ url_for('auth_login') }}">Click here</a> to log in.</div>
+                    {% if error %}
+                        <div id="register-error">{{ error }}</div>
+                    {% endif %}
+
+                    <button type="submit" class="login-submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
