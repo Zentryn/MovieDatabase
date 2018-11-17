@@ -21,6 +21,18 @@
                 Movie Database
             </a>
 
+            <div id="user-nav-block" class="navbar-block right">
+                <span id="navbar-user">{{ current_user.username }}</span>
+            
+                <div id="user-dropdown">
+                    <ul>
+                        <a href="{{ url_for('auth_logout') }}">
+                            <li>Log Out</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+
             <a class="navbar-block right" href="/movies/new">
                 Add New Movie
             </a>
