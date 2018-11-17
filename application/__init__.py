@@ -1,8 +1,8 @@
 from flask import Flask
 app = Flask(__name__)
 
-# Get SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 # Configure Database
 if os.environ.get("HEROKU"):
