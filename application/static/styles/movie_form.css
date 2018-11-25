@@ -6,7 +6,16 @@ input[type="text"] {
     color: white;
     border-bottom: 2px solid white;
     outline: none;
-    width: 300px;
+    width: 500px;
+}
+
+#input-plot {
+    width: 500px;
+    height: 120px;
+    background: transparent;
+    color: white;
+    padding: 10px;
+    resize: none;
 }
 
 input[type="submit"] {
@@ -16,6 +25,7 @@ input[type="submit"] {
     background-color: transparent;
     cursor: pointer;
     outline: none;
+    margin-top: 10px;
 
     transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out, border-color 0.1s ease-in-out;
 }
@@ -25,7 +35,7 @@ input[type="submit"] {
     background-color: white;
 }
 
-input {
+input, textarea {
     margin-bottom: 30px;
     margin-right: 50px;
 }
@@ -33,11 +43,18 @@ input {
 #preview-text {
     color: white;
     margin-bottom: 10px;
-    margin-top: 30px;
 }
 
 #movie-preview-item {
     width: 200px;
+    position: absolute;
+    top: 200px;
+    right: calc((100vw - var(--site-width)) / 2);
+}
+
+.movie-preview-item-left {
+    top: 0px !important;
+    left: 0px;
 }
 
 #error-list {
