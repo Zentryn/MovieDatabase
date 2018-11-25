@@ -21,3 +21,7 @@ window.onresize = () => {
 function setHeight(el, value) {
     el.style.height = value;
 }
+
+setTimeout(() => {
+    resizeCovers();
+});
