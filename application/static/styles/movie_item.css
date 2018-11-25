@@ -1,7 +1,11 @@
 .movie-item {
     padding-left: 0 !important;
-    padding-right: 30px !important;
     margin-bottom: 70px;
+    margin-right: -3px;
+}
+
+.movie-item-inner {
+    width: calc(100% - 30px);
 }
 
 .movie-item-cover {
@@ -20,6 +24,12 @@
 
 .movie-item-title {
     font-size: 0.95em;
-    padding-top: 10px;
+    margin-top: 10px;
     color: white;
+}
+
+.movie-item-genres {
+    font-size: 0.85em;
+    margin-top: 2px;
+    color: #8A85A3;
 }
