@@ -2,8 +2,10 @@ from flask import render_template, request, redirect, url_for
 from flask_login import login_required
 
 from application import app, db
-from application.movies.models import Movie
+from application.movies.models import Movie, movie_genre
 from application.movies.forms import MovieForm
+
+from sqlalchemy.sql import text
 
 @app.route("/movies/new", methods=["GET"])
 @login_required
@@ -105,6 +107,11 @@ def update_movie():
 
 @app.route("/movies/delete_movie", methods=["POST"])
 def delete_movie():
+    statement = text("DELETE FROM movie_genre WHERE movie_genre.movie_id = :movie_id")\
+                    .params(movie_id=request.form.get("id"))
+
+    db.engine.execute(statement)
+
     db.session().query(Movie)\
     .filter(Movie.id == request.form.get("id"))\
     .delete()
