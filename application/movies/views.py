@@ -42,7 +42,7 @@ def movies():
 @login_required
 def search_movies():
     movies = Movie.search_movies(request.form.get("search-input"))
-    
+
     # Get a text version of genres
     for movie in movies:
         movie.genres_text = movie.get_genres_text()
@@ -52,6 +52,9 @@ def search_movies():
 @app.route("/movies/<movie_id>", methods=["GET"])
 @login_required
 def movie_info(movie_id):
+    if movie_id is None:
+        return redirect(url_for("movies"))
+
     form = MovieForm()
     movie = Movie.query.get(movie_id)
 
