@@ -7,7 +7,12 @@ movie_genre = db.Table('movie_genre', Base.metadata,
     db.Column('genre_id', db.Integer, db.ForeignKey('genre.id'))
 )
 
-class Movie(Base):
+class Movie(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
+    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
+                              onupdate = db.func.current_timestamp())
+
     title = db.Column(db.String(150), nullable = False)
     poster_url = db.Column(db.String(255), nullable = False)
     director_id = db.Column(db.Integer, db.ForeignKey('director.id'), nullable = False)
