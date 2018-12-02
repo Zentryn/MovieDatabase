@@ -25,7 +25,7 @@ def add_movie():
     # Get list of genres
     genres = form.genres.data.split(",")
 
-    mov = Movie(form.title.data, form.poster_url.data, form.backdrop_url.data, form.director.data, form.plot.data, genres)
+    mov = Movie(form.title.data, form.poster_url.data, form.backdrop_url.data, form.director.data, form.plot.data, genres, True)
 
     db.session().add(mov)
     db.session().commit()
@@ -59,7 +59,7 @@ def request_movie():
     # Get list of genres
     genres = form.genres.data.split(",")
 
-    mov = Movie(form.title.data, form.poster_url.data, form.backdrop_url.data, form.director.data, form.plot.data, genres)
+    mov = Movie(form.title.data, form.poster_url.data, form.backdrop_url.data, form.director.data, form.plot.data, genres, False)
     req = MovieRequest(mov.id, current_user.id)
 
     db.session().add(mov)

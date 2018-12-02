@@ -19,7 +19,7 @@ class Movie(Base):
     genres = db.relationship("Genre", secondary=movie_genre)
     validated = db.Column(db.Boolean, default = False)
 
-    def __init__(self, title, poster_url, backdrop_url, director_name, plot, genres, id = None):
+    def __init__(self, title, poster_url, backdrop_url, director_name, plot, genres, validated, id = None):
         self.title = title
         self.plot = plot
         self.poster_url = poster_url
@@ -27,6 +27,7 @@ class Movie(Base):
 
         self.set_director(director_name)
         self.set_genres(genres)
+        self.validated = validated
 
         if id is not None:
             self.id = id
