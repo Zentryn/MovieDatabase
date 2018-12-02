@@ -2,7 +2,8 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
+    <meta lang="en">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Log In</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,17 +34,26 @@
                         {{ form.password(class_="login-input pass", required=true) }}
                     </div>
 
-                    <div id="not-a-member">Not a member? <a href="{{ url_for('auth_register') }}">Click here</a> to register.</div>
+                    <div id="not-a-member">Not a member? 
+                        <a href="{{ url_for('auth_register') }}">
+                            Click here
+                        </a> 
+                        to register.
+                    </div>
 
                     {% if error %}
                         <div id="login-error">{{ error }}</div>
                     {% endif %}
+
+                    <div id="unauthorized-error" class="error-text"></div>
 
                     <button type="submit" class="login-submit">Log in</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <script src="{{ url_for('static', filename='scripts/login.js') }}"></script>
 </body>
 
 </html>
