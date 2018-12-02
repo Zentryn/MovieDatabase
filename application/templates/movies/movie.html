@@ -81,6 +81,7 @@
 
 {% block submit_btn %}
     {% if current_user.role == "ADMIN" %}
+        {{ form.id }}
         <input class="submit-btn" type="submit" value="Update Movie" />
     {% endif %}
 {% endblock %}
