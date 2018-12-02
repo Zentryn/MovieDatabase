@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_item.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_layout.css') }}">
+
+    {% block movie_head %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+    <div id="background-cover"></div>
+    {% block background %}
+
+    {% endblock %}
+
+    <div id="content-container">
+        <div id="movie-item-container">
+            <div id="movie-item" class="movie-item">
+                {% block movie_item_cover %}
+
+                {% endblock %}
+
+                <div id="movie-item-title" class="movie-item-title">
+                    {% block movie_item_title %}
+
+                    {% endblock %}
+                </div>
+                <div id="movie-item-genres" class="movie-item-genres">
+                    {% block movie_item_genres %}
+
+                    {% endblock %}
+                </div>
+            </div>
+
+            {% block form_errors %}
+
+            {% endblock %}
+
+            {% block buttons %}
+
+            {% endblock %}
+        </div>
+
+        {% if form_action %}
+            <form id="movie-info-container" method="POST" action="{{ form_action }}">
+        {% else %}
+            <form id="movie-info-container">
+        {% endif %}
+            <h1 id="movie-title" class="movie-text">
+                {% block movie_title %}
+
+                {% endblock %}
+            </h1>
+    
+            <h3 id="movie-plot-title" class="movie-text">
+                Plot
+            </h3>
+    
+            <p id="movie-plot" class="movie-text">
+                {% block movie_plot %}
+
+                {% endblock %}
+            </p>
+
+            {% block poster_url %}
+
+            {% endblock %}
+
+            {% block backdrop_url %}
+
+            {% endblock %}
+
+            <h3 id="movie-director-title" class="movie-text">
+                Director
+            </h3>
+
+            <p id="movie-director" class="movie-text">
+                {% block movie_director %}
+
+                {% endblock %}
+            </p>
+
+            <h3 id="movie-genres-title" class="movie-text">
+                Genres
+            </h3>
+
+            <p id="movie-genres" class="movie-text">
+                {% block movie_genres %}
+
+                {% endblock %}
+            </p>
+
+            {% block submit_btn %}
+
+            {% endblock %}
+
+            {% block extra_form_elements %}
+
+            {% endblock %}
+        </form>
+
+        {% block extra_forms %}
+
+        {% endblock %}
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/movie_item_resize.js') }}"></script>
+{% endblock %}
