@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta lang="en">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Register</title>
@@ -33,7 +34,14 @@
                         {{ form.password(class_="login-input pass", required=true) }}
                     </div>
 
-                    <div id="already-a-member">Already a member? <a href="{{ url_for('auth_login') }}">Click here</a> to log in.</div>
+                    <div id="already-a-member">
+                        Already a member? 
+                        <a href="{{ url_for('auth_login') }}">
+                            Click here
+                        </a> 
+                        to log in.
+                    </div>
+
                     {% if error %}
                         <div id="register-error">{{ error }}</div>
                     {% endif %}
