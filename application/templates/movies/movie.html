@@ -1,104 +1,148 @@
-{% extends "layout.html" %}
+{% extends "movies/movie_layout.html" %}
 
-{% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_form.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_item.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie.css') }}">
-
+{% block movie_head %}
     <script src="{{ url_for('static', filename='scripts/movie_item_resize.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/movie_form.js') }}"></script>
 {% endblock %}
 
-{% block body %}
-    <div class="title-container">
-        <h2 id="page-title">Update Movie</h2>
-    </div>
-    
-    <form method="POST" action="{{ url_for('update_movie') }}">
-        {{ form.id }}
+{% block background %}
+    <div id="background" style="background-image: url('{{ movie.backdrop_url }}')"></div>
+{% endblock %}
+
+{% block movie_item_cover %}
+    <div id="movie-item-cover" class="movie-item-cover" style="background-image: url('{{ movie.poster_url }}')"></div>
+{% endblock %}
+
+{% block movie_title %}
+    {% if current_user.role == "ADMIN" %}
         {{ form.title(required=true) }}
-        <br>
-        {{ form.poster_url(required=true) }}
-        <br>
-        {{ form.director(required=true) }}
-        <br>
+    {% else %}
+        {{ movie.title }}
+    {% endif %}
+{% endblock %}
+
+{% block movie_plot %}
+    {% if current_user.role == "ADMIN" %}
         {{ form.plot(required=true) }}
-        <br>
+    {% else %}
+        {{ movie.plot }}
+    {% endif %}
+{% endblock %}
+
+
+{% block poster_url %}
+    {% if current_user.role == "ADMIN" %}
+        {{ form.poster_url(required=true) }}
+    {% endif %}
+{% endblock %}
+
+{% block backdrop_url %}
+    {% if current_user.role == "ADMIN" %}
+        {{ form.backdrop_url(required=true) }}
+    {% endif %}
+{% endblock %}
+
+{% block movie_director %}
+    {% if current_user.role == "ADMIN" %}
+        {{ form.director(required=true) }}
+    {% else %}
+        {{ movie.director.name }}
+    {% endif %}
+{% endblock %}
+
+{% block movie_genres %}
+    {% if current_user.role == "ADMIN" %}
         {{ form.genres(required=true) }}
-        <br>
-        <input id="submit-btn" type="submit" value="Update Movie" />
-    </form>
+    {% else %}
+        {{ movie.genres_text }}
+    {% endif %}
+{% endblock %}
 
-    <form method="POST" action="{{ url_for('delete_movie') }}">
-        {{ form.id }}
-        <input id="delete-movie-btn" type="submit" value="Delete Movie" />
-    </form>
+{% block extra_forms %}
+    {% if current_user.role == "ADMIN" %}
+        {% if movie.validated %}
+            <form method="POST" action="{{ url_for('unvalidate_movie') }}" style="width: 55%; float: right;">
+                {{ form.id }}
+                <input class="submit-btn" type="submit" value="Hide Movie" />
+            </form>
+        {% else %}
+            <form method="POST" action="{{ url_for('validate_movie') }}" style="width: 55%; float: right;">
+                {{ form.id }}
+                <input class="submit-btn" type="submit" value="Make Movie Visible" />
+            </form>
+        {% endif %}
 
+        <form method="POST" action="{{ url_for('delete_movie') }}" style="width: 55%; float: right;">
+            {{ form.id }}
+            <input class="submit-btn" type="submit" value="Delete Movie" />
+        </form>
+    {% endif %}
+{% endblock %}
+
+{% block submit_btn %}
+    {% if current_user.role == "ADMIN" %}
+        <input class="submit-btn" type="submit" value="Update Movie" />
+    {% endif %}
+{% endblock %}
+
+{% block form_errors %}
     {% if form.title.errors %}
         <p id="error-list-title">Movie Title is invalid:</p>
 
         <ul id="error-list">
-            {% endif %}
             {% for error in form.title.errors %}
                 <li class="error-list-item">{{ error }}</li>
+            {% endfor %}
         </ul>
-    {% endfor %}
+    {% endif %}
 
     {% if form.poster_url.errors %}
         <p id="error-list-title">Poster URL is invalid:</p>
 
         <ul id="error-list">
-            {% endif %}
             {% for error in form.poster_url.errors %}
                 <li class="error-list-item">{{ error }}</li>
+            {% endfor %}
         </ul>
-    {% endfor %}
+    {% endif %}
+
+    {% if form.backdrop_url.errors %}
+        <p id="error-list-title">Backdrop URL is invalid:</p>
+
+        <ul id="error-list">
+            {% for error in form.backdrop_url.errors %}
+                <li class="error-list-item">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     {% if form.director.errors %}
         <p id="error-list-title">Movie Director is invalid:</p>
 
         <ul id="error-list">
-            {% endif %}
             {% for error in form.director.errors %}
                 <li class="error-list-item">{{ error }}</li>
+            {% endfor %}
         </ul>
-    {% endfor %}
+    {% endif %}
 
     {% if form.plot.errors %}
         <p id="error-list-title">Movie Plot is invalid:</p>
 
         <ul id="error-list">
-            {% endif %}
             {% for error in form.plot.errors %}
                 <li class="error-list-item">{{ error }}</li>
+            {% endfor %}
         </ul>
-    {% endfor %}
+    {% endif %}
 
     {% if form.genres.errors %}
         <p id="error-list-title">Movie Genres are invalid:</p>
 
         <ul id="error-list">
-            {% endif %}
             {% for error in form.genres.errors %}
                 <li class="error-list-item">{{ error }}</li>
+            {% endfor %}
         </ul>
-    {% endfor %}
-
-    <div id="movie-preview-item" class="movie-item">
-        <p id="preview-text">
-            Preview:
-        </p>
-
-        <div id="movie-preview-item-cover" class="movie-item-cover" style="background-image: url('{{ form.poster_url.data }}')"></div>
-        <div id="movie-preview-item-title" class="movie-item-title">
-            {% if form.title.data %}
-                {{ form.title.data }}
-            {% endif %}
-        </div>
-        <div id="movie-preview-item-genres" class="movie-item-genres">
-            {% if form.genres.data %}
-                {{ form.genres.data }}
-            {% endif %}
-        </div>
-    </div>
+    {% endif %}
 {% endblock %}
