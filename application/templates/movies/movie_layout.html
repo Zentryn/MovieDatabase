@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_form.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_item.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_layout.css') }}">
+    <script src="{{ url_for('static', filename='scripts/movie_item_resize.js') }}"></script>
 
     {% block movie_head %}
 
@@ -106,6 +107,4 @@
 
         {% endblock %}
     </div>
-
-    <script src="{{ url_for('static', filename='scripts/movie_item_resize.js') }}"></script>
 {% endblock %}
