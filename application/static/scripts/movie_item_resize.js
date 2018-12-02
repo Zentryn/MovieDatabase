@@ -7,11 +7,13 @@ function resizeCovers() {
     }
 }
 
-window.onload = resizeCovers;
-
-window.onresize = () => {
+$(document).ready(() => {
     resizeCovers();
-}
+});
+
+$(window).resize(() => {
+    resizeCovers();
+});
 
 /**
  * Sets the height for an element
