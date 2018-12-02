@@ -35,7 +35,7 @@ def auth_register():
     if user:
         return render_template("auth/register.html", form = LoginForm(), error = "That username is already taken.")
 
-    user = User(form.username.data, form.password.data)
+    user = User(form.username.data, form.password.data, "USER")
     db.session().add(user)
     db.session().commit()
 
