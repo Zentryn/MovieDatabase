@@ -149,7 +149,7 @@ button {
     border-bottom: 1px solid lightblue;
 }
 
-#login-error, #register-error {
+#login-error, #register-error, .error-text {
     color: lightcoral;
     font-size: 2.4em;
     text-align: left;
