@@ -1,5 +1,7 @@
 from application import db
 from application.models import Base
+from application.director.models import Director
+from application.genre.models import Genre
 from sqlalchemy.sql import text, exists
 
 movie_genre = db.Table('movie_genre', Base.metadata,
@@ -10,15 +12,18 @@ movie_genre = db.Table('movie_genre', Base.metadata,
 class Movie(Base):
     title = db.Column(db.String(150), nullable = False)
     poster_url = db.Column(db.String(255), nullable = False)
+    backdrop_url = db.Column(db.String(255), nullable = False)
     director_id = db.Column(db.Integer, db.ForeignKey('director.id'), nullable = False)
     director = db.relationship("Director", back_populates = "movies")
     plot = db.Column(db.String(1000), nullable = False)
-    genres = db.relationship("Genre", secondary=movie_genre, back_populates="movies")
+    genres = db.relationship("Genre", secondary=movie_genre)
+    validated = db.Column(db.Boolean, default = False)
 
-    def __init__(self, title, poster_url, director_name, plot, genres, id = None):
+    def __init__(self, title, poster_url, backdrop_url, director_name, plot, genres, id = None):
         self.title = title
         self.plot = plot
         self.poster_url = poster_url
+        self.backdrop_url = backdrop_url
 
         self.set_director(director_name)
         self.set_genres(genres)
@@ -83,17 +88,3 @@ class Movie(Base):
                 movies.append(mov)
 
         return movies
-
-class Director(Base):
-    name = db.Column(db.String(150), nullable = False)
-    movies = db.relationship("Movie", back_populates = "director")
-
-    def __init__(self, name):
-        self.name = name
-
-class Genre(Base):
-    name = db.Column(db.String(150), nullable = False)
-    movies = db.relationship("Movie", secondary=movie_genre, back_populates="genres")
-
-    def __init__(self, name):
-        self.name = name
