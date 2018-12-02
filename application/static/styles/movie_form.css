@@ -30,14 +30,13 @@ input[type="submit"] {
     transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out, border-color 0.1s ease-in-out;
 }
 
-#submit-btn:hover {
+.submit-btn:hover {
     color: black;
     background-color: white;
 }
 
 input, textarea {
     margin-bottom: 30px;
-    margin-right: 50px;
 }
 
 #preview-text {
