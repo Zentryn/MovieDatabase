@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie_item.css') }}">
+
+    <script src="{{ url_for('static', filename='scripts/movie_item_resize.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/movie_form.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="title-container">
+        <h2 id="page-title">Request a Movie</h2>
+    </div>
+
+    <form method="POST" action="{{ url_for('request_movie') }}">
+        {{ form.title(required=true) }}
+        <br>
+        {{ form.poster_url(required=true) }}
+        <br>
+        {{ form.director(required=true) }}
+        <br>
+        {{ form.plot(required=true) }}
+        <br>
+        {{ form.genres(required=true) }}
+        <br>
+        <input class="submit-btn" type="submit" value="Send Request" />
+    </form>
+
+    {% if form.title.errors %}
+        <p id="error-list-title">Movie Title is invalid:</p>
+
+        <ul id="error-list">
+            {% endif %}
+            {% for error in form.title.errors %}
+                <li class="error-list-item">{{ error }}</li>
+        </ul>
+    {% endfor %}
+
+    {% if form.poster_url.errors %}
+        <p id="error-list-title">Poster URL is invalid:</p>
+
+        <ul id="error-list">
+            {% endif %}
+            {% for error in form.poster_url.errors %}
+                <li class="error-list-item">{{ error }}</li>
+        </ul>
+    {% endfor %}
+
+    {% if form.director.errors %}
+        <p id="error-list-title">Movie Director is invalid:</p>
+
+        <ul id="error-list">
+            {% endif %}
+            {% for error in form.director.errors %}
+                <li class="error-list-item">{{ error }}</li>
+        </ul>
+    {% endfor %}
+
+    {% if form.plot.errors %}
+        <p id="error-list-title">Movie Plot is invalid:</p>
+
+        <ul id="error-list">
+            {% endif %}
+            {% for error in form.plot.errors %}
+                <li class="error-list-item">{{ error }}</li>
+        </ul>
+    {% endfor %}
+
+    {% if form.genres.errors %}
+        <p id="error-list-title">Movie Genres are invalid:</p>
+
+        <ul id="error-list">
+            {% endif %}
+            {% for error in form.genres.errors %}
+                <li class="error-list-item">{{ error }}</li>
+        </ul>
+    {% endfor %}
+
+    <div id="movie-preview-item" class="movie-item">
+        <p id="preview-text">
+            Preview:
+        </p>
+
+        <div id="movie-preview-item-cover" class="movie-item-cover" style="background-image: url('{{ form.poster_url.data }}')"></div>
+        <div id="movie-preview-item-title" class="movie-item-title">
+            {% if form.title.data %}
+                {{ form.title.data }}
+            {% endif %}
+        </div>
+        <div id="movie-preview-item-genres" class="movie-item-genres">
+            {% if form.genres.data %}
+                {{ form.genres.data }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
