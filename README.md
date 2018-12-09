@@ -20,7 +20,7 @@ priviledges
 ### Documentation
 [Usecases](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Usecases.md)
 
-[Database Overview](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Database.png)
+[Database Diagram (image)](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Database.png)
 
 [Installing](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Installing.md)
 
