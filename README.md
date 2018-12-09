@@ -21,38 +21,6 @@ priviledges
 
 [Database Overview](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Database.png)
 
-## Installing
-To install the application, first clone the repository to your local machine
-```
-git clone git@github.com:Zentryn/MovieDatabase.git
-```
+[Installing](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Installing.md)
 
-Then create a virtual environment and activate it using
-```
-python3 -m venv venv
-source venv/Scripts/activate
-```
-
-Then, install dependencies using
-```
-pip install -r requirements.txt
-```
-
-You can now start up the application by running _run.py_
-```
-python3 run.py
-```
-The application will now be running at _localhost:5000_
-
-## Usage
-To start using the application, register yourself an account via the link on the login page.
-
-As a normal user you can browse existing movies and request new ones via the link in the navigation bar. Requested movies will be seen by administrators and can then be accepted by them. Normal users can also add movies as favorites which saves them to a personal 'library'.
-
-Administrators can also edit and delete existing movies on their individual pages.
-
-To create yourself an admin account, you have you connect to the database and create the account from there, using "ADMIN" as role. For example:
-```
-sqlite3 ./application/movies.db
-INSERT INTO account (username, password, role) VALUES (wanted_username, wanted_password, 'ADMIN');
-```
+[Use Guide](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Useguide.md)
