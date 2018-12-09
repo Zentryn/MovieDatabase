@@ -18,9 +18,11 @@ priviledges
 * You can try out administrative features by logging in with "admin" as username and password
 
 ### Documentation
-[Usecases](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Usecases.md)
+[Database Overview](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Database.md)
 
 [Database Diagram (image)](https://raw.githubusercontent.com/Zentryn/MovieDatabase/master/documentation/Database.png)
+
+[Usecases](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Usecases.md)
 
 [Installing](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Installing.md)
 
