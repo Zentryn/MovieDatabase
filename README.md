@@ -47,6 +47,6 @@ The application will now be running at _localhost:5000_
 ## Usage
 To start using the application, register yourself an account via the link on the login page.
 
-As a normal user you can browse existing movies and request new ones via the link in the navigation bar. Requested movies will be seen by administrators and can then be accepted by them.
+As a normal user you can browse existing movies and request new ones via the link in the navigation bar. Requested movies will be seen by administrators and can then be accepted by them. Normal users can also add movies as favorites which saves them to a personal 'library'.
 
 Administrators can also edit and delete existing movies on their individual pages.
