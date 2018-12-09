@@ -27,3 +27,5 @@ priviledges
 [Installing](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Installing.md)
 
 [Use Guide](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/Useguide.md)
+
+[Missing Features & More](https://github.com/Zentryn/MovieDatabase/blob/master/documentation/MissingFeatures.md)
