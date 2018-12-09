@@ -16,10 +16,15 @@ CREATE TABLE base (
 The movie table contains data of a singular movie.
 
 _title_: The title of the movie
+
 _poster_url_: URL to the movie's poster image
+
 _backdrop_url_: URL to the movie's backdrop image
+
 _plot_: A plot summary of the movie
+
 _validated_: A flag that tells if the movie should be shown in the application
+
 _director_id_: ID of the director that directed this movie
 
 ```
@@ -60,7 +65,9 @@ CREATE TABLE genre (
 The account table contains information about a user of the application
 
 _username_: The username of the user
+
 _password_: The user's password
+
 _role_: The user's role. Can be either _USER_ or _ADMIN_
 
 ```
@@ -76,6 +83,7 @@ CREATE TABLE account (
 The movie_account table is a connection table between an account and a movie and is used for storing information about user's favorited movies
 
 _movie_id_: ID of the movie that an account is linked to
+
 _account_id: ID of the account that a movie is linked to
 
 ```
@@ -92,6 +100,7 @@ CREATE TABLE movie_account (
 The movie_genre table is a connection table between a movie and a genre. It's used for storing the genres that a movie has.
 
 _movie_id_: ID of the movie that a genre is linked to
+
 _genre_id_: ID of the genre that a movie is linked to
 
 ```
