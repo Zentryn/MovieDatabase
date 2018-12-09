@@ -6,6 +6,7 @@ var genres_input = null;
 var item_cover = null;
 var item_title = null;
 var item_genres = null;
+var favorite_btn = null;
 
 $(document).ready(() => {
     title_input = document.getElementById('input-title');
@@ -16,6 +17,11 @@ $(document).ready(() => {
     item_cover = document.getElementById('movie-item-cover');
     item_title = document.getElementById('movie-item-title');
     item_genres = document.getElementById('movie-item-genres');
+    favorite_btn = document.getElementById('favorite-btn');
+
+    if (favorite_btn !== null && favorite_btn !== undefined) {
+        favorite_btn.onclick = onFavoriteClick;
+    }
 
     title_input.onkeyup = () => {
         updateInputs();
@@ -65,4 +71,19 @@ function getValue(el) {
  */
 function setValue(el, val) {
     el.value = val;
+}
+
+/**
+ * Handles favorite button click
+ */
+function onFavoriteClick() {
+    var favorite = (favorite_btn.classList.contains('favorited'));
+    var movie_id = getValue(document.getElementById('movie_id'));
+
+    document.body.innerHTML += '<form id="favorite_form" action="/movies/favorite" method="POST">\
+                                    <input type="hidden" name="id" value="' + movie_id + '">\
+                                    <input type="hidden" name="favorite" value="' + ((favorite) ? "true" : "false") + '">\
+                                </form>';
+
+    document.getElementById("favorite_form").submit();
 }
