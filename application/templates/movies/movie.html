@@ -3,6 +3,7 @@
 {% block movie_head %}
     <script src="{{ url_for('static', filename='scripts/movie_item_resize.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/movie_form.js') }}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 {% endblock %}
 
 {% block background %}
@@ -18,6 +19,9 @@
         {{ form.title(required=true) }}
     {% else %}
         {{ movie.title }}
+
+        <i id="favorite-btn" class="material-icons {{ fav_style }}">{{ fav_content }}</i>
+        <input id="movie_id" type="text" value="{{ movie.id }}" style="display: none;">
     {% endif %}
 {% endblock %}
 
