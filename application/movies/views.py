@@ -4,7 +4,6 @@ from flask_login import login_required, current_user
 from application import app, db, login_required
 from application.movies.models import Movie, movie_genre
 from application.auth.models import User
-from application.movie_request.models import MovieRequest
 from application.movies.forms import MovieForm
 
 from sqlalchemy.sql import text
@@ -79,10 +78,8 @@ def request_movie():
     genres = form.genres.data.split(",")
 
     mov = Movie(form.title.data, form.poster_url.data, form.backdrop_url.data, form.director.data, form.plot.data, genres, False)
-    req = MovieRequest(mov.id, current_user.id)
 
     db.session().add(mov)
-    db.session().add(req)
     db.session().commit()
 
     return redirect(url_for("movies"))
