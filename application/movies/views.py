@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 
 from application import app, db, login_required
 from application.movies.models import Movie, movie_genre
+from application.auth.models import User
 from application.movie_request.models import MovieRequest
 from application.movies.forms import MovieForm
 
@@ -40,6 +41,24 @@ def list_requested_movies():
     # Get a text version of genres
     for movie in movies:
         movie.genres_text = movie.get_genres_text()
+
+    return render_template("movies/movies.html", movies = movies)
+
+@app.route("/movies/favorited", methods=["GET"])
+@login_required()
+def list_favorited_movies():
+    fav_mov_ids = []
+    for mov in current_user.favorite_movies:
+        fav_mov_ids.append(mov.id)
+
+    movies = db.session().query(Movie).all()
+
+    # Get a text version of genres
+    for movie in movies:
+        if movie.id not in fav_mov_ids:
+            movies.remove(movie)
+        else:
+            movie.genres_text = movie.get_genres_text()
 
     return render_template("movies/movies.html", movies = movies)
 
@@ -111,6 +130,14 @@ def movie_info(movie_id):
     genres = movie.genres
     genres_text = ""
 
+    fav_style = ""
+    fav_content = "favorite_border"
+    for fav_mov in current_user.favorite_movies:
+        if fav_mov.id == int(movie_id):
+            fav_style = "favorited"
+            fav_content = "favorite"
+            break
+
     counter = 0
     for genre in genres:
         genres_text += genre.name
@@ -124,7 +151,7 @@ def movie_info(movie_id):
 
     form.genres.data = genres_text
 
-    return render_template("movies/movie.html", form = form, movie = movie, form_action = "/movies/update_movie")
+    return render_template("movies/movie.html", form = form, movie = movie, form_action = "/movies/update_movie", fav_style = fav_style, fav_content = fav_content)
 
 @app.route("/movies/update_movie", methods=["POST"])
 @login_required("ADMIN")
@@ -133,8 +160,16 @@ def update_movie():
     mov = db.session().query(Movie)\
     .filter(Movie.id == request.form.get("id"))
 
+    fav_style = ""
+    fav_content = "favorite_border"
+    for fav_mov in current_user.favorite_movies:
+        if fav_mov.id == request.form.get("id"):
+            fav_style = "favorited"
+            fav_content = "favorite"
+            break
+
     if not form.validate():
-        return render_template("movies/movie.html", form = form, movie = mov, form_action = "/movies/update_movie")
+        return render_template("movies/movie.html", form = form, movie = mov, form_action = "/movies/update_movie", fav_style = fav_style, fav_content = fav_content)
 
     # Update genres and director
     mov.first().set_genres(request.form.get("genres").split(", "))
@@ -153,6 +188,29 @@ def update_movie():
     db.session().commit()
 
     return redirect(url_for("movies"))
+
+@app.route("/movies/favorite", methods=["POST"])
+@login_required()
+def favorite_movie():
+    movie_id = request.form.get("id")
+    favorite = (request.form.get("favorite") == "false")
+
+    mov = db.session().query(Movie)\
+    .filter(Movie.id == movie_id).first()
+
+    acc = db.session().query(User)\
+    .filter(User.id == current_user.id)\
+    .first()
+
+    if (mov is not None):
+        if favorite:
+            acc.favorite_movies.append(mov)
+        else:
+            acc.favorite_movies.remove(mov)
+
+    db.session().commit()
+
+    return movie_info(movie_id)
 
 @app.route("/movies/validate_movie", methods=["POST"])
 @login_required("ADMIN")
