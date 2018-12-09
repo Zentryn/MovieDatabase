@@ -52,15 +52,15 @@ def list_favorited_movies():
         fav_mov_ids.append(mov.id)
 
     movies = db.session().query(Movie).all()
+    movs = []
 
     # Get a text version of genres
     for movie in movies:
-        if movie.id not in fav_mov_ids:
-            movies.remove(movie)
-        else:
+        if movie.id in fav_mov_ids:
             movie.genres_text = movie.get_genres_text()
+            movs.append(movie)
 
-    return render_template("movies/movies.html", movies = movies)
+    return render_template("movies/movies.html", movies = movs)
 
 @app.route("/movies/request", methods=["GET"])
 @login_required()
