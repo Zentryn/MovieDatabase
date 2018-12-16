@@ -1,6 +1,6 @@
 ## Database Overview
 
-The database consists of 6 tables and uses PostgreSQL on Heroku and SQLite when the project is ran locally. Here is a brief overview of each of them and provided are also SQL queries for creating them.
+The database consists of 6 tables and uses PostgreSQL on Heroku and SQLite when the project is ran locally. Here is a brief overview of each of the tables and provided are also SQL queries for creating them.
 
 ### Base table
 This isn't an actual table in the database but it is a base for all other tables, which is why it's listed here. All other tables have the columns that this tables does.
